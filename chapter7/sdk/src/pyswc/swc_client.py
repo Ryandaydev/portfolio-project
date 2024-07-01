@@ -34,11 +34,11 @@ class SWCClient:
     )
 
     BULK_FILE_NAMES = {
-        "players": "player_data.csv",
-        "leagues": "league_data.csv",
-        "performances": "performance_data.csv",
-        "teams": "team_data.csv",
-        "team_players": "team_player_data.csv",
+        "players": "player_data",
+        "leagues": "league_data",
+        "performances": "performance_data",
+        "teams": "team_data",
+        "team_players": "team_player_data"
     }
 
     def __init__(self, input_config: config.SWCConfig):
@@ -50,6 +50,7 @@ class SWCClient:
         self.swc_base_url = input_config.swc_base_url
         self.backoff = input_config.swc_backoff
         self.backoff_max_time = input_config.swc_backoff_max_time
+        self.bulk_file_format = input_config.swc_bulk_file_format
 
         if self.backoff:
             self.get_url = backoff.on_exception(
@@ -58,6 +59,12 @@ class SWCClient:
                 max_time=self.backoff_max_time,
                 jitter=backoff.random_jitter,
             )(self.get_url)
+
+        if self.bulk_file_format.lower() == "parquet":
+            BULK_FILE_NAMES = {key: value + "parquet" for key, value in BULK_FILE_NAMES.items()}
+        else:
+            BULK_FILE_NAMES = {key: value + "csv" for key, value in BULK_FILE_NAMES.items()}
+
 
     def get_url(self, url: str) -> httpx.Response:
         """Makes API call and logs errors."""
