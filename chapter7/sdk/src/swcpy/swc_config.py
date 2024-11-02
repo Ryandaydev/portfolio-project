@@ -16,7 +16,7 @@ class SWCConfig:
 
     def __init__(
         self,
-        url: str = None,
+        swc_base_url: str = None,
         backoff: bool = True,
         backoff_max_time: int = 30,
         bulk_file_format: str = "csv",
@@ -38,7 +38,7 @@ class SWCConfig:
             If bulk files should be in csv or parquet format.
         """
 
-        self.swc_base_url = url or os.getenv("SWC_BASE_URL")
+        self.swc_base_url = swc_base_url or os.getenv("SWC_BASE_URL")
         print(f"SWC_BASE_URL in SWCConfig init: {self.swc_base_url}")  # Debug line
 
 

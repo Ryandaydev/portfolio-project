@@ -11,6 +11,15 @@ To install this SDK in your environment, execute the following command:
 
 This SDK implements all the endpoints in the SWC API, in addition to providing bulk downloads of the SWC fantasy data in CSV format.
 
+### Setting base URL for the API
+The SDK looks for a value of `SWC_BASE_URL` in the environment. The preferred method for setting the base URL for the SWC API is by creating a Python `.env` file in your project directory with the following value:
+
+```
+SWC_BASE_URL={URL of your API}
+```
+
+You may also set this value as an environment variable in the environment you are using the SDK, or pass it as a parameter to the `SWCConfig()` method.
+
 ### Example of normal API functions
 
 To call the SDK functions for normal API endpoints, here is an example:
@@ -19,7 +28,7 @@ To call the SDK functions for normal API endpoints, here is an example:
 from swcpy import SWCClient
 from swcpy import SWCConfig
 
-config = SWCConfig(url="http://127.0.0.1:8000",backoff=False)
+config = SWCConfig(backoff=False)
 client = SWCClient(config)    
 leagues_response = client.list_leagues()
 print(leagues_response)
