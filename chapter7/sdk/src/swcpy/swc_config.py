@@ -38,12 +38,12 @@ class SWCConfig:
             If bulk files should be in csv or parquet format.
         """
 
-        self.swc_base_url = swc_base_url or os.getenv("SWC_BASE_URL")
-        print(f"SWC_BASE_URL in SWCConfig init: {self.swc_base_url}")  # Debug line
+        self.swc_base_url = swc_base_url or os.getenv("SWC_API_BASE_URL")
+        print(f"SWC_API_BASE_URL in SWCConfig init: {self.swc_base_url}")  # Debug line
 
 
         if not self.swc_base_url:
-            raise ValueError("Base URL is required. Set SWC_BASE_URL environment variable.")
+            raise ValueError("Base URL is required. Set SWC_API_BASE_URL environment variable.")
 
         self.swc_backoff = backoff
         self.swc_backoff_max_time = backoff_max_time

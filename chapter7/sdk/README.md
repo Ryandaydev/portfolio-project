@@ -12,10 +12,10 @@ To install this SDK in your environment, execute the following command:
 This SDK implements all the endpoints in the SWC API, in addition to providing bulk downloads of the SWC fantasy data in CSV format.
 
 ### Setting base URL for the API
-The SDK looks for a value of `SWC_BASE_URL` in the environment. The preferred method for setting the base URL for the SWC API is by creating a Python `.env` file in your project directory with the following value:
+The SDK looks for a value of `SWC_API_BASE_URL` in the environment. The preferred method for setting the base URL for the SWC API is by creating a Python `.env` file in your project directory with the following value:
 
 ```
-SWC_BASE_URL={URL of your API}
+SWC_API_BASE_URL={URL of your API}
 ```
 
 You may also set this value as an environment variable in the environment you are using the SDK, or pass it as a parameter to the `SWCConfig()` method.
