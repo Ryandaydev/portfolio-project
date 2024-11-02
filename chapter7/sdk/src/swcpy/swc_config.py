@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class SWCConfig:
     """Configuration class containing arguments for the SDK client.
